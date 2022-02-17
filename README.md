@@ -42,12 +42,17 @@ to check it
 
 `pip install -r requirements.txt`
 
-and then (for lab format)
+and then
+(for lab format)
+
 `cd lab`
+
 `python run_lab.py PATH_WITH_IMAGES [args]`
 
 or (for rgb format)
+
 `cd lab`
+
 `python run_rgb.py PATH_WITH_IMAGES [args]`
 
 the models will be saved in models directory and the details about the training (including sample images)
