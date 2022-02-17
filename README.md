@@ -55,7 +55,7 @@ and then
 
 or (for rgb format)
 
-`cd lab`
+`cd rgb`
 
 `python run_rgb.py PATH_WITH_IMAGES [args]`
 
