@@ -40,6 +40,10 @@ to check it
 
 ## Training:
 
+`virtualenv venv`
+
+`source venv/bin/activate`
+
 `pip install -r requirements.txt`
 
 and then

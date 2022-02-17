@@ -24,7 +24,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 model = torch.load(args.model_path, map_location='cpu')
-img_grayscale = PIL.Image.open(args.img_path).convert('RGB')A
+img_grayscale = PIL.Image.open(args.img_path).convert('RGB')
 
 input_transform = T.Compose([T.ToTensor(),
     T.Resize(size=(256,256)),
