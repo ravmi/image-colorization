@@ -4,6 +4,7 @@ import argparse
 from utils import make_image, image_to_input
 import torch
 import PIL
+from torchvision import transforms as T
 
 parser = argparse.ArgumentParser(description='Image colorization script')
 parser.add_argument(
@@ -26,15 +27,10 @@ args = parser.parse_args()
 model = torch.load(args.model_path, map_location='cpu')
 img_grayscale = PIL.Image.open(args.img_path).convert('RGB')
 
-input_transform = T.Compose([T.ToTensor(),
-    T.Resize(size=(256,256)),
-    T.Grayscale(),
-    T.Normalize((0.5), (0.5))
-    ])
+x, y = image_to_input(img_grayscale)
 
-data = input_transform(img_grayscale)
-
+x_batch = torch.unsqueeze(x, dim=0).float()
 model.eval()
-out = model(torch.unsqueeze(data, dim=0))
-img_colorized = T.ToPILImage()(out * 0.5 + 0.5)
+out = model(x_batch)
+img_colorized = make_image(x_batch[0], out[0])
 img_colorized.save(args.output_path)
